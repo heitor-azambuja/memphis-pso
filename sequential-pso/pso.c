@@ -1,17 +1,17 @@
-#include <api>  // Memphis parallel platform api
+#include <api.h>  // Memphis parallel platform api
 #include <stdlib.h>
 
 int fitness(int x, int y, int z) {
 
     int penalty = 10000;
 
-    int objective_function = 10 * pow((x - 1), 2) + 20 * pow((y - 2), 2) + 30 * pow((z - 3), 2);
+    int objective_function = 10 * (x - 1) * (x - 1) + 20 * (y - 2) * (y - 2) + 30 * (z - 3) * (z - 3);
 
     // Constrains (all constrains must be converted into <=0)
     int constrains[2];
     
     constrains[0] = x + y + z - 5;
-    constrains[1] = pow(x, 2) + 2 * y - z;
+    constrains[1] = x * x + 2 * y - z;
 
     // defining penalty for each constrain
     int count = sizeof(constrains);
@@ -59,7 +59,6 @@ void main(){
     
     // calculate initial fitness
     int fitness_values[population];
-    int population_best_position[dimensions];
     int population_best_fitness[100];
     int global_best_position[dimensions];
     int global_best_fitness = 0;
@@ -67,10 +66,14 @@ void main(){
         fitness_values[i] = fitness(particles[i][0], particles[i][1], particles[i][2]);
         population_best_fitness[i] = fitness_values[i];
         if (i == 0) {
-            global_best_position = particles[0];
+            global_best_position[0] = particles[0][0];
+            global_best_position[1] = particles[0][1];
+            global_best_position[2] = particles[0][2];
             global_best_fitness = fitness_values[0];
         } else if (fitness_values[i] < global_best_fitness) {
-            global_best_position = particles[i];
+            global_best_position[0] = particles[i][0];
+            global_best_position[1] = particles[i][1];
+            global_best_position[2] = particles[i][2];
             global_best_fitness = fitness_values[i];
         }
     }
