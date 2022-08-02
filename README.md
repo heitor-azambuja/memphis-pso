@@ -3,11 +3,12 @@ Implementation of pso algorithm in Memphis, an experimental virtual parallelizat
 
 ## How to use
 
-<!-- ## To Do -->
+First you have to install the Memphis platform by GAPH-PUCRS. Go to the [Repository](https://github.com/gaph-pucrs/Memphis/) and follow the [Video Tutorial](https://www.youtube.com/watch?v=nvgtvFcCc60&ab_channel=GAPH-PUCRS).
 
 ## References
+- Memphis Platform ([Repository](https://github.com/gaph-pucrs/Memphis/))
 - A Survey on Parallel Particle Swarm Optimization Algorithms ([Article](https://www.researchgate.net/publication/330249950_A_Survey_on_Parallel_Particle_Swarm_Optimization_Algorithms))
-- Codes in MATLAB for Particle Swarm Optimization ([Code](https://www.researchgate.net/publication/296636431_Codes_in_MATLAB_for_Particle_Swarm_Optimization)
+- Codes in MATLAB for Particle Swarm Optimization ([Code](https://www.researchgate.net/publication/296636431_Codes_in_MATLAB_for_Particle_Swarm_Optimization))
 
 ## Author
 - Heitor Teixeira de Azambuja
