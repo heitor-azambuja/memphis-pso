@@ -52,11 +52,11 @@ void main(){
         for (size_t j = 0; j < dimensions; j++) {
             particles[i][j] = lower_bounds[j] + rand() % (upper_bounds[j] - lower_bounds[j] + 1);
             velocity[i][j] = min_velocity + rand() % (max_velocity - min_velocity + 1);
+            // initialize best_position same as positions
+            best_position[i][j] = particles[i][j];
         }
     }
     
-    // initialize best_position same as positions
-    best_position = particles;
     
     // calculate initial fitness
     int fitness_values[population];
