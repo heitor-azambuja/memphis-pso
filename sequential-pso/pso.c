@@ -46,6 +46,7 @@ void main(){
     // initializing population
     Echo("Initializing population");
     int particles[population][dimensions];
+    int best_position[population][dimensions];
     int velocity[population][dimensions];
     for (size_t i = 0; i < population; i++) {
         for (size_t j = 0; j < dimensions; j++) {
@@ -55,7 +56,7 @@ void main(){
     }
     
     // initialize best_position same as positions
-    int best_position[population][dimensions] = particles;
+    best_position = particles;
     
     // calculate initial fitness
     int fitness_values[population];
