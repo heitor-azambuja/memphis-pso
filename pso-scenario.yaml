@@ -1,0 +1,5 @@
+apps:
+  - name: pso
+    cluster: 0
+    static_mapping:
+      pso: [1,1]
