@@ -5,7 +5,7 @@
 void main() {
     Message msg;
 
-    // msg.lenght = 4;
+    msg.length = 4;
     
     //  Send message containing rng seed to slaves
     msg.msg[0] = 135430;
@@ -22,45 +22,68 @@ void main() {
 
     msg.msg[0] = 98512;
     Send(&msg, slave04);
-    Echo("Sent message to slave 04");
+    Echo("Sent seed to slave 04");
 
 
     // Receive message from slaves
     Receive(&msg, slave01);
-    Echo("Received message from slave 01");
-    Echo("Slave 01 best fitness: ");
+    Echo("Received results from slave 01");
+    Echo("Slave 01 fitness: ");
     Echo(itoa(msg.msg[0]));
-    Echo("Slave 01 best position: ");
-    Echo(itoa(msg.msg[1]));
-    Echo(itoa(msg.msg[2]));
-    Echo(itoa(msg.msg[3]));
+    // Echo("Slave 01 position: ");
+    // Echo(itoa(msg.msg[1]));
+    // Echo(itoa(msg.msg[2]));
+    // Echo(itoa(msg.msg[3]));
+    
+    int best_fitness = msg.msg[0];
+    int best_slave_idx = 1;
     
     Receive(&msg, slave02);
-    Echo("Received message from slave 02");
-    Echo("Slave 02 best fitness: ");
+    Echo("Received results from slave 02");
+    Echo("Slave 02 fitness: ");
     Echo(itoa(msg.msg[0]));
-    Echo("Slave 02 best position: ");
-    Echo(itoa(msg.msg[1]));
-    Echo(itoa(msg.msg[2]));
-    Echo(itoa(msg.msg[3]));
+    // Echo("Slave 02 position: ");
+    // Echo(itoa(msg.msg[1]));
+    // Echo(itoa(msg.msg[2]));
+    // Echo(itoa(msg.msg[3]));
+
+    if (msg.msg[0] < best_fitness) {
+        best_fitness = msg.msg[0];
+        best_slave_idx = 2;
+    }
 
     Receive(&msg, slave03);
-    Echo("Received message from slave 03");
-    Echo("Slave 03 best fitness: ");
+    Echo("Received results from slave 03");
+    Echo("Slave 03 fitness: ");
     Echo(itoa(msg.msg[0]));
-    Echo("Slave 03 best position: ");
-    Echo(itoa(msg.msg[1]));
-    Echo(itoa(msg.msg[2]));
-    Echo(itoa(msg.msg[3]));
+    // Echo("Slave 03 position: ");
+    // Echo(itoa(msg.msg[1]));
+    // Echo(itoa(msg.msg[2]));
+    // Echo(itoa(msg.msg[3]));
+
+    if (msg.msg[0] < best_fitness) {
+        best_fitness = msg.msg[0];
+        best_slave_idx = 3;
+    }
 
     Receive(&msg, slave04);
-    Echo("Received message from slave 04");
-    Echo("Slave 04 best fitness: ");
+    Echo("Received results from slave 04");
+    Echo("Slave 04 fitness: ");
     Echo(itoa(msg.msg[0]));
-    Echo("Slave 04 best position: ");
-    Echo(itoa(msg.msg[1]));
-    Echo(itoa(msg.msg[2]));
-    Echo(itoa(msg.msg[3]));
+    // Echo("Slave 04 best position: ");
+    // Echo(itoa(msg.msg[1]));
+    // Echo(itoa(msg.msg[2]));
+    // Echo(itoa(msg.msg[3]));
+
+    if (msg.msg[0] < best_fitness) {
+        best_fitness = msg.msg[0];
+        best_slave_idx = 4;
+    }
+
+    Echo("Best fitness found: ");
+    Echo(itoa(best_fitness));
+    Echo("Best slave: ");
+    Echo(itoa(best_slave_idx));
 
     exit();
 }

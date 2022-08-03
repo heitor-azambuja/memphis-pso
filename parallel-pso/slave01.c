@@ -32,6 +32,8 @@ void main(){
     // receive seed from master
     Receive(&msg, master);
     int SEED = msg.msg[0];  // for rand() function
+    Echo("Received seed from master");
+    Echo(itoa(SEED));
 
     int lower_bounds[3] = {0, 0, 0};
     int upper_bounds[3] = {10, 10, 10};
