@@ -1,9 +1,31 @@
 # Memphis PSO
-C++ implementation of pso algorithm in Memphis, an experimental virtual parallelization platform.
+A very simple c++ implementation of pso algorithm in Memphis, an experimental virtual parallelization platform.
 
 ## How to use
 
-First you have to install the Memphis platform by GAPH-PUCRS. Go to the [Repository](https://github.com/gaph-pucrs/Memphis/) and follow the [Video Tutorial](https://www.youtube.com/watch?v=nvgtvFcCc60&ab_channel=GAPH-PUCRS).
+First you have to install the Memphis platform by GAPH-PUCRS. [Repository](https://github.com/gaph-pucrs/Memphis/), [Video Tutorial](https://www.youtube.com/watch?v=nvgtvFcCc60&ab_channel=GAPH-PUCRS).
+
+After Memphis installation, follow the steps pelow:
+
+Create pso environment by running the following command:
+
+```
+$ memphis-gen pso-environment.yaml
+```
+
+Copy the folders parallel-pso and sequential-pso to pso-environment/applications folder in memphis home.
+
+Compine and run sequential or parallel pso running the commands in the repository directory:
+```
+$ memphis-app pso-environment.yaml sequential-pso.yaml
+$ memphis-run pso-environment.yaml sequential-pso.yaml 100000
+```
+substitute the yaml file by the version of pso you wish to run. The third value in the second command is the execution time in ms. Small times will cause the simulation to finish before the pso starts. You can probably get it to work with a smaller time though. For me, 25 ms did not work, 100000 in the second attempt worked and I stuck to it.
+
+To stpo execution just run:
+```
+$ killall sequential-pso
+```
 
 ## References
 - Memphis Platform ([Repository](https://github.com/gaph-pucrs/Memphis/))
