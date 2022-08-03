@@ -161,10 +161,10 @@ void main(){
     Echo(itoa(global_best_position[2]));
 
     // Sending results to master
-    msg[0] = global_best_fitness;
-    msg[1] = global_best_position[0];
-    msg[2] = global_best_position[1];
-    msg[3] = global_best_position[2];
+    msg.msg[0] = global_best_fitness;
+    msg.msg[1] = global_best_position[0];
+    msg.msg[2] = global_best_position[1];
+    msg.msg[3] = global_best_position[2];
     
     Send(&msg, master);
     Echo("Sent results to master");
