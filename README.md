@@ -1,5 +1,5 @@
 # Memphis PSO
-Implementation of pso algorithm in Memphis, an experimental virtual parallelization platform.
+C++ implementation of pso algorithm in Memphis, an experimental virtual parallelization platform.
 
 ## How to use
 

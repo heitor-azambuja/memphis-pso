@@ -1,0 +1,10 @@
+apps:
+  - name: pararllel-pso
+    cluster: 0
+    start_time_ms: 0
+    static_mapping:
+      master: [1,1]
+      slave01: [0,1]
+      slave02: [1,0]
+      slave03: [2,1]
+      slave04: [1,2]
