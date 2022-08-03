@@ -1,5 +1,5 @@
 #include <api.h>  // Memphis parallel platform api
-#include <stdlib.h>
+#include <stdlib.h>  // Memphis version o stdlib, for rand()
 
 int fitness(int x, int y, int z) {
 
@@ -27,6 +27,8 @@ int fitness(int x, int y, int z) {
 
 void main(){
 
+    int SEED = 135430;  // for rand() function
+
     int lower_bounds[3] = {0, 0, 0};
     int upper_bounds[3] = {10, 10, 10};
 
@@ -50,14 +52,18 @@ void main(){
     int velocity[population][dimensions];
     for (size_t i = 0; i < population; i++) {
         for (size_t j = 0; j < dimensions; j++) {
-            particles[i][j] = lower_bounds[j] + rand() % (upper_bounds[j] - lower_bounds[j] + 1);
-            velocity[i][j] = min_velocity + rand() % (max_velocity - min_velocity + 1);
+            // particles[i][j] = lower_bounds[j] + rand() % (upper_bounds[j] - lower_bounds[j] + 1);
+            // velocity[i][j] = min_velocity + rand() % (max_velocity - min_velocity + 1);
+            particles[i][j] = rand(SEED, lower_bounds[j], upper_bounds[j]);
+            SEED++;
+            velocity[i][j] = rand(SEED, min_velocity, max_velocity);
+            SEED++;
             // initialize best_position same as positions
             best_position[i][j] = particles[i][j];
         }
     }
     
-    
+
     // calculate initial fitness
     int fitness_values[population];
     int population_best_fitness[100];
@@ -96,8 +102,11 @@ void main(){
         for (size_t j = 0; j < population; j++) {
             for (size_t k = 0; k < dimensions; k++) {
                 velocity[j][k] = inertia_weight * velocity[j][k] +
-                cognitive_weight * rand() % (best_position[j][k] - particles[j][k]) + 
-                social_weight * rand() % (global_best_position[k] - particles[j][k]);
+                cognitive_weight * rand(SEED, particles[j][k], best_position[j][k]) +
+                social_weight * rand(SEED + 1, particles[j][k], global_best_position[k]);
+                SEED += 2;
+                // cognitive_weight * rand() % (best_position[j][k] - particles[j][k]) + 
+                // social_weight * rand() % (global_best_position[k] - particles[j][k]);
 
                 particles[j][k] = particles[j][k] + velocity[j][k];
                 
