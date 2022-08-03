@@ -89,7 +89,7 @@ void main(){
     for (int i = 0; i < max_iterations; i++) {
 
         // Sanity check
-        if ((i + 1 % 50) == 0) {
+        if ((i + 1) % 50 == 0) {
             Echo("Iteration number: ");
             Echo(itoa(i + 1));
         }
