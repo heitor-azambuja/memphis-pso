@@ -1,5 +1,6 @@
 apps:
-  - name: pso
+  - name: sequential-pso
     cluster: 0
+    start_time_ms: 0
     static_mapping:
       pso: [1,1]

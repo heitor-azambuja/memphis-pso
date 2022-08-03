@@ -16,7 +16,7 @@ int fitness(int x, int y, int z) {
     // defining penalty for each constrain
     int count = sizeof(constrains);
     int constrain_sum = 0;
-    for (size_t i = 0; i < count; i++) {
+    for (int i = 0; i < count; i++) {
         if (constrains[i] > 0) {
             constrain_sum++;
         }
@@ -39,10 +39,10 @@ void main(){
     // float damping_factor = 0.99; // Memphis supposedely doesn't support floats
     int cognitive_weight = 2;
     int social_weight = 2;
-    int min_velocity = -2;
-    int max_velocity = 2;
-    int error_tolerance = 1;
-    int max_iterations = 100;
+    int min_velocity = -1;
+    int max_velocity = 1;
+    int error_tolerance = 10;
+    int max_iterations = 200;
 
     /*  PSO initialization  */
     // initializing population
@@ -50,8 +50,8 @@ void main(){
     int particles[population][dimensions];
     int best_position[population][dimensions];
     int velocity[population][dimensions];
-    for (size_t i = 0; i < population; i++) {
-        for (size_t j = 0; j < dimensions; j++) {
+    for (int i = 0; i < population; i++) {
+        for (int j = 0; j < dimensions; j++) {
             // particles[i][j] = lower_bounds[j] + rand() % (upper_bounds[j] - lower_bounds[j] + 1);
             // velocity[i][j] = min_velocity + rand() % (max_velocity - min_velocity + 1);
             particles[i][j] = rand(SEED, lower_bounds[j], upper_bounds[j]);
@@ -69,7 +69,7 @@ void main(){
     int population_best_fitness[100];
     int global_best_position[dimensions];
     int global_best_fitness = 0;
-    for (size_t i = 0; i < population; i++) {
+    for (int i = 0; i < population; i++) {
         fitness_values[i] = fitness(particles[i][0], particles[i][1], particles[i][2]);
         population_best_fitness[i] = fitness_values[i];
         if (i == 0) {
@@ -86,7 +86,7 @@ void main(){
     }
 
     /*  PSO execution  */
-    for (size_t i = 0; i < max_iterations; i++) {
+    for (int i = 0; i < max_iterations; i++) {
 
         // Sanity check
         if ((i + 1 % 50) == 0) {
@@ -99,8 +99,8 @@ void main(){
         // inertia_weight = inertia_weight * damping_factor;
 
         // update velocity and position
-        for (size_t j = 0; j < population; j++) {
-            for (size_t k = 0; k < dimensions; k++) {
+        for (int j = 0; j < population; j++) {
+            for (int k = 0; k < dimensions; k++) {
                 velocity[j][k] = inertia_weight * velocity[j][k] +
                 cognitive_weight * rand(SEED, particles[j][k], best_position[j][k]) +
                 social_weight * rand(SEED + 1, particles[j][k], global_best_position[k]);
@@ -139,8 +139,13 @@ void main(){
 
         // check error tolerance
         if (global_best_fitness <= error_tolerance) {
-            Echo("Error tolerance reached.");
+            Echo("Error tolerance reached on iteration: ");
+            Echo(itoa(i + 1));
             break;
+        }
+
+        if (i + 1 == max_iterations) {
+            Echo("Reached max iterations.");
         }
     }
     
