@@ -8,19 +8,19 @@ void main() {
     msg.lenght = 4;
     
     //  Send message containing rng seed to slaves
-    msg.msg[0] = 135430
+    msg.msg[0] = 135430;
     Send(&msg, slave01);
     Echo("Sent seed to slave 01");
 
-    msg.msg[0] = 1
+    msg.msg[0] = 1;
     Send(&msg, slave02);
     Echo("Sent seed to slave 02");
 
-    msg.msg[0] = 78951
+    msg.msg[0] = 78951;
     Send(&msg, slave03);
     Echo("Sent seed to slave 03");
 
-    msg.msg[0] = 98512
+    msg.msg[0] = 98512;
     Send(&msg, slave04);
     Echo("Sent message to slave 04");
 
@@ -61,4 +61,7 @@ void main() {
     Echo(itoa(msg.msg[1]));
     Echo(itoa(msg.msg[2]));
     Echo(itoa(msg.msg[3]));
+
+    exit();
+
 }

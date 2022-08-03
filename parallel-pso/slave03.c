@@ -28,9 +28,7 @@ int fitness(int x, int y, int z) {
 void main(){
 
     Message msg;
-
-    msg.lenght = 4;
-
+    
     // receive seed from master
     Receive(&msg, master);
     int SEED = msg[0];  // for rand() function
