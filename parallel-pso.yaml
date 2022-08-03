@@ -1,5 +1,5 @@
 apps:
-  - name: pararllel-pso
+  - name: parallel-pso
     cluster: 0
     start_time_ms: 0
     static_mapping:
