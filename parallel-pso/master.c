@@ -5,7 +5,7 @@
 void main() {
     Message msg;
 
-    msg.lenght = 4;
+    // msg.lenght = 4;
     
     //  Send message containing rng seed to slaves
     msg.msg[0] = 135430;
