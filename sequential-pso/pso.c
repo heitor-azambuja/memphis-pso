@@ -50,8 +50,8 @@ void main(){
     int social_weight = 2;
     int min_velocity = -2;
     int max_velocity = 2;
-    int error_tolerance = 10;
-    int max_iterations = 200;
+    int error_tolerance = 1;
+    int max_iterations = 400;
 
     /*  PSO initialization  */
     // initializing population
@@ -147,7 +147,7 @@ void main(){
         }
 
         // check error tolerance
-        if (global_best_fitness <= error_tolerance) {
+        if (global_best_fitness < error_tolerance) {
             Echo("Error tolerance reached on iteration: ");
             Echo(itoa(i + 1));
             break;
