@@ -19,19 +19,19 @@ void main() {
     msg.msg[1] = 50;  //  lower bounds
     msg.msg[2] = 99;  //  upper bounds
     Send(&msg, slave02);
-    Echo("Sent seed to slave 02");
+    Echo("Sent parameters to slave 02");
 
     msg.msg[0] = 78951;
     msg.msg[1] = 100;
     msg.msg[2] = 149;
     Send(&msg, slave03);
-    Echo("Sent seed to slave 03");
+    Echo("Sent parameters to slave 03");
 
     msg.msg[0] = 98512;
     msg.msg[1] = 150;
     msg.msg[2] = 200;
     Send(&msg, slave04);
-    Echo("Sent seed to slave 04");
+    Echo("Sent parameters to slave 04");
 
 
     // Receive message from slaves
