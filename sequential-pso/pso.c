@@ -38,8 +38,8 @@ void main(){
 
     // int lower_bounds[3] = {0, 0, 0};
     // int upper_bounds[3] = {10, 10, 10};
-    int lower_bounds[3] = {-100, -100, -100};
-    int upper_bounds[3] = {100, 100, 100};
+    int lower_bounds[3] = {0, 0, 0};
+    int upper_bounds[3] = {200, 200, 200};
 
     // PSO parameters
     int dimensions = 3;
