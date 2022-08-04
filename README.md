@@ -17,7 +17,7 @@ Copy the folders parallel-pso and sequential-pso to pso-environment/applications
 
 Compine and run sequential or parallel pso running the commands in the repository directory:
 ```
-$ memphis-app pso-environment.yaml sequential-pso.yaml
+$ memphis-app pso-environment.yaml -all sequential-pso.yaml
 $ memphis-run pso-environment.yaml sequential-pso.yaml 100000
 ```
 substitute the yaml file by the version of pso you wish to run. The third value in the second command is the execution time in ms. Small times will cause the simulation to finish before the pso starts. You can probably get it to work with a smaller time though. For me, 25 ms did not work, 100000 in the second attempt worked and I stuck to it.
