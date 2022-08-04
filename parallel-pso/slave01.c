@@ -1,28 +1,35 @@
 #include <api.h>  // Memphis parallel platform api
 #include <stdlib.h>  // Memphis version o stdlib, for rand()
 
-int fitness(int x, int y, int z) {
+// int fitness(int x, int y, int z) {
 
-    int penalty = 10000;
+//     int penalty = 10000;
 
-    int objective_function = 10 * (x - 1) * (x - 1) + 20 * (y - 2) * (y - 2) + 30 * (z - 3) * (z - 3);
+//     int objective_function = 10 * (x - 1) * (x - 1) + 20 * (y - 2) * (y - 2) + 30 * (z - 3) * (z - 3);
 
-    // Constrains (all constrains must be converted into <=0)
-    int constrains[2];
+//     // Constrains (all constrains must be converted into <=0)
+//     int constrains[2];
     
-    constrains[0] = x + y + z - 5;
-    constrains[1] = x * x + 2 * y - z;
+//     constrains[0] = x + y + z - 5;
+//     constrains[1] = x * x + 2 * y - z;
 
-    // defining penalty for each constrain
-    int count = sizeof(constrains);
-    int constrain_sum = 0;
-    for (int i = 0; i < count; i++) {
-        if (constrains[i] > 0) {
-            constrain_sum++;
-        }
-    }
+//     // defining penalty for each constrain
+//     int count = sizeof(constrains);
+//     int constrain_sum = 0;
+//     for (int i = 0; i < count; i++) {
+//         if (constrains[i] > 0) {
+//             constrain_sum++;
+//         }
+//     }
 
-    return objective_function + penalty * constrain_sum;
+//     return objective_function + penalty * constrain_sum;
+// }
+
+int fitness(int x, int y, int z) {
+    // rosenbrock function
+    int x_factor = 100 * (y - (x * x)) * (y - (x * x)) + (1 - x) * (1 - x);
+    int y_factor = 100 * (z - (y * y)) * (z - (y * y)) + (1 - y) * (1 - y);
+    return abs(x_factor + y_factor);
 }
 
 void main(){
@@ -31,23 +38,24 @@ void main(){
 
     // receive seed from master
     Receive(&msg, master);
+    Echo("Received parameters from master");
+    
     int SEED = msg.msg[0];  // for rand() function
-    Echo("Received seed from master");
-    Echo(itoa(SEED));
+    // Echo(itoa(SEED));
 
-    int lower_bounds[3] = {0, 0, 0};
-    int upper_bounds[3] = {10, 10, 10};
+    int lower_bounds[3] = {msg.msg[1], msg.msg[1], msg.msg[1]};
+    int upper_bounds[3] = {msg.msg[2], msg.msg[2], msg.msg[2]};
 
     // PSO parameters
     int dimensions = 3;
-    int population = 100;
+    int population = msg.msg[3];
     int inertia_weight = 1;
     // float damping_factor = 0.99; // Memphis supposedely doesn't support floats
     int cognitive_weight = 2;
     int social_weight = 2;
-    int min_velocity = -1;
-    int max_velocity = 1;
-    int error_tolerance = 10;
+    int min_velocity = -2;
+    int max_velocity = 2;
+    int error_tolerance = 1;
     int max_iterations = 200;
 
     /*  PSO initialization  */

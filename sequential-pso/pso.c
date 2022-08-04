@@ -29,7 +29,7 @@ int fitness(int x, int y, int z) {
     // rosenbrock function
     int x_factor = 100 * (y - (x * x)) * (y - (x * x)) + (1 - x) * (1 - x);
     int y_factor = 100 * (z - (y * y)) * (z - (y * y)) + (1 - y) * (1 - y);
-    return x_factor + y_factor;
+    return abs(x_factor + y_factor);
 }
 
 void main(){
@@ -51,7 +51,7 @@ void main(){
     int min_velocity = -2;
     int max_velocity = 2;
     int error_tolerance = 1;
-    int max_iterations = 400;
+    int max_iterations = 200;
 
     /*  PSO initialization  */
     // initializing population

@@ -5,22 +5,31 @@
 void main() {
     Message msg;
 
-    msg.length = 4;
+    msg.length = 5;
     
-    //  Send message containing rng seed to slaves
-    msg.msg[0] = 135430;
+    //  Send message containing pso parameters to slaves
+    msg.msg[0] = 135430;  //  rng seed
+    msg.msg[1] = 0;  //  lower bounds
+    msg.msg[2] = 49;  //  upper bounds
+    msg.msg[3] = 25;  //  population
     Send(&msg, slave01);
-    Echo("Sent seed to slave 01");
+    Echo("Sent parameters to slave 01");
 
-    msg.msg[0] = 1;
+    msg.msg[0] = 1; //  rng seed
+    msg.msg[1] = 50;  //  lower bounds
+    msg.msg[2] = 99;  //  upper bounds
     Send(&msg, slave02);
     Echo("Sent seed to slave 02");
 
     msg.msg[0] = 78951;
+    msg.msg[1] = 100;
+    msg.msg[2] = 149;
     Send(&msg, slave03);
     Echo("Sent seed to slave 03");
 
     msg.msg[0] = 98512;
+    msg.msg[1] = 150;
+    msg.msg[2] = 200;
     Send(&msg, slave04);
     Echo("Sent seed to slave 04");
 
